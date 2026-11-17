@@ -1,0 +1,31 @@
+# sysguard configuration
+#
+# Copy this file to config/sysguard.conf (or /etc/sysguard/sysguard.conf) and edit.
+# The real config is git-ignored because it may contain a webhook secret.
+#   cp config/sysguard.conf.example config/sysguard.conf && chmod 600 config/sysguard.conf
+#
+# Format: KEY=VALUE, one per line. Values are literal (no shell expansion, the
+# file is never executed). Quotes are optional. A leading ~/ expands to $HOME.
+
+# Alert when usage is ABOVE these percentages (0-100).
+CPU_THRESHOLD=80
+MEM_THRESHOLD=80
+SWAP_THRESHOLD=50
+DISK_THRESHOLD=85
+
+# Mount point(s) to check, comma-separated: "/" or "/,/var,/home"
+DISK_PATH=/
+
+# Where timestamped plain-text log entries are appended.
+LOG_FILE=/tmp/sysguard.log
+
+# Slack or Discord incoming-webhook URL. Leave empty to disable notifications.
+WEBHOOK_URL=
+
+# Comma-separated services to verify, e.g. ssh,cron,docker
+# Linux with systemd: checked via `systemctl is-active <unit>`.
+# Otherwise (and on macOS): checked via `pgrep -x <name>` (also tries <name>d).
+SERVICES_TO_CHECK=
+
+# Seconds between the two CPU samples (the CPU figure is measured over this window).
+CPU_SAMPLE_SECONDS=1
